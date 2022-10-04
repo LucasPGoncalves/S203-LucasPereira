@@ -1,27 +1,31 @@
 package builder;
 
-public class CarroBuilder {
+public class CarroBuilderFluente {
 	
 	private Carro carro;
 	
-	public CarroBuilder() {
+	public CarroBuilderFluente() {
 		carro = new Carro();
 	}
 
-	void buildPortas(Porta portas[]) {
+	public CarroBuilderFluente buildPortas(Porta portas[]) {
 		carro.setPortas(portas);
+		return this;
 	}
 	
-	void buildMotor(Motor m) {
+	public CarroBuilderFluente buildMotor(Motor m) {
 		carro.setMotor(m);
+		return this;
 	}
 	
-	void buildComputadorBordo(ComputadorBordo cb) {
+	public CarroBuilderFluente buildComputadorBordo(ComputadorBordo cb) {
 		carro.setComputadorbordo(cb);
+		return this;
 	}
 	
-	void buildFreioABS(FreioABS f) {
+	public CarroBuilderFluente buildFreioABS(FreioABS f) {
 		carro.setFreioABS(f);
+		return this;
 	}
 	
 	private void validarPorta() {
