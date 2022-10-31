@@ -13,24 +13,66 @@ public class Artigo {
 		this.estado = "Rascunho";
 	}
 	
+	public String getEstado() {
+		return estado;
+	}
+
+	public List<String> getLogHistorico() {
+		return logHistorico;
+	}
+	
 	public void publicar() {
-		GerenteDeSeguranca seguranca = GerenteDeSeguranca.getInstace();
-		if("Rascunho".equals(this.estado)) {
-			if(seguranca.ehUsuarioAutor) {
-				this.estado = "Revisando";
-				this.logHistorico.add("Transitado para Revisando em" + LocalDate.now());
+		GerenteDeSeguranca gerenteDeSeguranca = GerenteDeSeguranca.getInstance();
+		if("RASCUNHO".equals(this.estado)) {
+			if (gerenteDeSeguranca.ehUsuarioAutor()) {
+				this.estado = "REVISANDO";
+				this.logHistorico.add("Transitado para REVISANDO em " + LocalDate.now());
 				return;
-			} else {
-				throw new RuntimeException("Usuario nao tem permissao para publicar");
 			}
+			else {
+				throw new RuntimeException("Usuario não tem permissão para publicar");
+			}
+			
 		}
-		if("Revisando".equals(this.estado)) {
-			if(seguraca.ehUsuarioModerador) {
-				this.estado = "Aprovado";
-				this.logHistorico.add("Transitado para Aprovado em " + LocalDate.now());
-			} else {
-				throw new RuntimeException("Usuario nao tem permissao para publicar");
+		
+		if("REVISANDO".equals(this.estado)) {
+			if (gerenteDeSeguranca.ehUsuarioModerador()) {
+				this.estado = "APROVADO";
+				this.logHistorico.add("Transitado para APROVADO em " + LocalDate.now());
+				return;
 			}
+			else {
+				throw new RuntimeException("Usuario não tem permissão para publicar");
+			}
+			
+		}	
+		
+		if("Aprovado".equals(this.estado)) {
+			return;
+		}
+	}
+	
+	public void reprovar() {
+		GerenteDeSeguranca gerenteDeSeguranca = GerenteDeSeguranca.getInstance();
+		
+		if("RASCUNHO".equals(this.estado)) {
+			return;
+		}
+		
+		if("REVISANDO".equals(this.estado)) {
+			if (gerenteDeSeguranca.ehUsuarioModerador()) {
+				this.estado = "RASCUNHO";
+				this.logHistorico.add("Transitado para RASCUNHO em " + LocalDate.now());
+				return;
+			}
+			else {
+				throw new RuntimeException("Usuario não tem permissão para reprovar");
+			}
+			
+		}	
+		
+		if("Aprovado".equals(this.estado)) {
+			return;
 		}
 	}
 }
