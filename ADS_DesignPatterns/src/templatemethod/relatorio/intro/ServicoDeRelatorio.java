@@ -22,7 +22,6 @@ public class ServicoDeRelatorio {
 	}
 	public List<String> getVendasAnual(Integer ano) {
 	    List<String> vendasAnual = new ArrayList<>(); 
-
 	    vendasAnual.add("CATEGORIA DE PRODUTOS      | TOTAL ANUAL");
 	    vendasAnual.add("Camisas Polo               |    98000,00");
 	    vendasAnual.add("Calças Jeans               |    45600,00");

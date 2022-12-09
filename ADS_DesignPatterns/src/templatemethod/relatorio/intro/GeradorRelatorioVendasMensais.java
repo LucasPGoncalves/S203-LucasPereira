@@ -5,12 +5,12 @@ import java.util.List;
 public class GeradorRelatorioVendasMensais {
 	private String getCabecalho() {
 		String cabecalho = "Empresa MY" + '\n'
-						 + "----------";
+						 + "-----------------";
 		return cabecalho;
 	}
 	
 	private String getRodape() {
-		String rodape = "------------------------------" + '\n'
+		String rodape = "-----------------------------------------" + '\n'
 					  + "* Propriedade particular - Uso Confidencial";
 		return rodape;
 	}

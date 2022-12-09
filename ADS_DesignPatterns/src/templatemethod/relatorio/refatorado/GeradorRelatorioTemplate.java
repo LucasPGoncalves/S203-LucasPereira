@@ -8,12 +8,12 @@ public abstract class GeradorRelatorioTemplate {
 	
 	private String getCabecalho() {
 		String cabecalho = "Empresa MY" + '\n'
-						 + "----------";
+						 + "----------------";
 		return cabecalho;
 	}
 	
 	private String getRodape() {
-		String rodape = "------------------------------" + '\n'
+		String rodape = "-----------------------------------" + '\n'
 					  + "* Propriedade particular - Uso Confidencial";
 		return rodape;
 	}
